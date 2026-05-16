@@ -2,3 +2,5 @@ This folder holds the code and results obtained when learning the CA upon therma
 
 The level of cooling rate also determines if the program can finish grain formation within the specified steps or not. High undercooling rate ( >=2 ) can easily finish before the steps runout.
 Low cooling rate (~1) will prohibit grain formation withing the limited steps and teh final result will be left with molten material remaining.
+
+The image attached with this as sample is formed for 20 random nuclie distributed throughout the sample piece.
