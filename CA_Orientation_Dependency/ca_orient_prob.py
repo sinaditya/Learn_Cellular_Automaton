@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 Nx = 100
 Ny = 100
 
-state = np.zeros((Nx, Ny), dtype=int) # 0: liquid, >0: solid with grain ID, -1: non-interactive boundary
+state = np.zeros((Nx, Ny), dtype=int) # explicit int type saves from errors when accessing grain ids from float type
 T = np.zeros((Nx,Ny))
 
 # Initialize temperature field (linear gradient)
