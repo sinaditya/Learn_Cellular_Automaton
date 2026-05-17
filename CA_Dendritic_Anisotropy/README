@@ -23,3 +23,5 @@ V1 is having a condition for hard anisotropy where certain directions for grain 
 
 Optional code of inclusion of captured cells and prevent rechecking all is also in the directory.Helps to save time and computation. 
 
+NOTE- The current code still has an artifical directional bias induced by the order of checking of neighbours. This may give that neighbour an unfair advantage over others to capture that liquid cell since it may pass the probability check first. We'll deal with neighbour randomisation later. 
+
