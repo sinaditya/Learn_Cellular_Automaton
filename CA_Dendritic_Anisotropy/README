@@ -1,0 +1,16 @@
+Here, now I will include the phenomenon of formation of dendrites since their occurence is driven by factors like- some crystallographic directions grow faster, atoms attach more easily along preferred directions and interface energy is anisotropic. 
+So the interface does NOT advance uniformly. As until now, orientation only affected growth speed while treating all neighbouring directions similarly. Here the preferential selection makes some portion to grow faster, protruding into undercooled liquid zone and thus extending and forming branches further simultaneously. 
+Until before, grain orientation only affected the growth probability. But now, it may happen that the neighbouring directions even withing the same grain may grow differently. like- north neighbour may grow faster than a diagonal neighbour. 
+Dendrites arise because interface velocity depends on angle:
+
+v(θ)=V(1+ϵcos(nθ))
+
+where:
+
+v(θ) = growth velocity in direction θ
+ϵ = anisotropy strength
+n = crystal symmetry
+
+This is the mathematical foundation of anisotropic growth. We won't directly code to solve this equation directly. Rather we will just emulate and assign specific directions for now. 
+
+TLDR : if a grain is aligned with the preferred orientation, it will grow uniformly in all directions as its growth is preferred by being more aligned. Now, we not only affect the growth of grains based on their orientation, but also the specific direction of growth as well. 
