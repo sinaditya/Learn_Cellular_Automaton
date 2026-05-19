@@ -6,7 +6,7 @@ The heat source inputs heat into the grid. The thermal solver will solve the hea
 The initial changes were
 -to have a smaller grain size (more number of nuclie : increased from 20  to 1600)
 -to have a gaussian heat source that moves on a straight line with a specified heat input radius and decay area
--incorporate the aspects of cooling_coefficient that represents the convective losses indirectly, density, thermal diffusivity and cp of the material to model a sensible heat input, effects of ambient temperatures, constant wall temperatures which act heat sinks and other physical properties. 
+-incorporate the aspects of cooling_coefficient to represent the convective losses indirectly; density, latent heat, thermal diffusivity and cp of the material to model a sensible heat input; effects of ambient temperatures and constant wall temperatures which act heat sinks; and other physical properties. 
 
 The flow of the code is as the first part forms a random distribution of grains in our observation window. The heat source is then given to the sample which raises the temperature and causes the melting to begin. Meanwhile the motion of heat source is also carried out. In the same timestep, the heat diffusion solver calculates the new temperature gradients and updates the thermal profile for the next timestep to solve for grain growth. The CA part then governs the grain growth based on the current thermal situation which is updated in every timestep. 
 
