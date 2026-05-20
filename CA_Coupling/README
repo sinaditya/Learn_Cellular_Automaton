@@ -12,3 +12,30 @@ The flow of the code is as the first part forms a random distribution of grains 
 
 
 The current model completely lacks the inclusion of thermal stresses and fluid motion in the molten weld pool, as well as dimensional relevance to reality. Appropriate scaling was done by hit and trial and with references of guides. 
+
+
+
+Features of solver in V1--
+
+moving weld heat source,
+transient heat diffusion,
+melt pool formation,
+remelting,
+epitaxial regrowth,
+stochastic capture,
+dendritic anisotropy,
+thermal-gradient-driven growth,
+competitive columnar growth,
+randomized CA updates
+
+-----------------------
+Note-
+Transient heat diffusion had to solve for the probability based on angle of the grain compared to the thermal gradient which was formulated using cosine function. However, since cosine hits 0 at an angle, perpendicular directions were completely prohibited from grain growth. To prevent this, the function was changed such that it always stays strictly positive. This gave rise to a different directional preference once solidification occurs, that only the top(or bottom) cells were solidifying upon passage of the heat source depending on the sign of the thermal gradient. This was eventually settled by taking absolute (mod) of the cosine value in the first place since the negative parts and positive parts will contribute equally to the probability of regrowth. This allowed for a propoer teardrop shaped weld pool to form and traverse across the sample. 
+The next issue for the selection of grains to regrow was also having an indirect bias because of the existense of the for loop. Since it always gave grains falling in the initial checking sequence more chance and hindered natural formation behaviour. This was eventually fixed by randomising the grain selection order as well from a list of cells to be checked and picked randomly. 
+-----------------------
+
+
+[Inclusion of remainig physical phenomena and tuning of existing physical parameters will be done in further versions and updated here in this README.]
+
+
+
