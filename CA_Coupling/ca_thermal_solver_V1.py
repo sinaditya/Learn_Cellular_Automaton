@@ -12,13 +12,13 @@ Ny = 300
 # THERMAL PARAMETERS
 # =========================================================
 
-alpha = 0.2
+alpha = 0.25
 dt = 0.1
 dx = 1
 
-Tm = 1000
+Tm = 950
 ambient_temp = 300
-cooling_coeff = 0.03
+cooling_coeff = 0.07
 rho = 1
 cp = 1
 # =========================================================
@@ -28,7 +28,7 @@ cp = 1
 row_source = 150
 col_source = 10
 
-source_radius = 20
+source_radius = 28
 source_strength = 300
 
 # =========================================================
@@ -57,7 +57,7 @@ state[:, -1] = -1
 melted = np.zeros((Nx, Ny), dtype=bool)
 
 # SUBSTRATE GRAIN INITIALIZATION
-num_nuclei = 1600
+num_nuclei = 2000
 
 orientation = np.zeros(num_nuclei + 1)
 
@@ -91,8 +91,8 @@ for fill_step in range(200):
     state = new_state
 
 # GROWTH PARAMETERS
-k = 0.03
-anisotropy_strength = 0.3
+k = 0.06
+anisotropy_strength = 0.4
 
 # VISUALIZATION SETUP
 fig, ax = plt.subplots()
@@ -100,7 +100,7 @@ im = ax.imshow(state,cmap='jet',origin='lower')
 plt.colorbar(im)
 
 # MAIN SIMULATION LOOP
-for step in range(300): 
+for step in range(350): 
 
     T_old = T.copy()
 
@@ -125,7 +125,7 @@ for step in range(300):
             if 0 <= i < Nx and 0 <= j < Ny:
 
                 r2 = ((i - row_source) ** 2 + (j - col_source) ** 2)
-                Q = source_strength * np.exp(-r2 / 800)
+                Q = source_strength * np.exp(-r2 / 1200)
 
                 T[i,j] += (Q * dt) / (rho * cp)
 
