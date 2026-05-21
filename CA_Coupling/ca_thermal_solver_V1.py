@@ -13,7 +13,7 @@ Ny = 300
 # =========================================================
 
 alpha = 0.25
-dt = 0.1
+dt = 0.08
 dx = 1
 
 Tm = 950
@@ -28,8 +28,8 @@ cp = 1
 row_source = 150
 col_source = 10
 
-source_radius = 28
-source_strength = 300
+source_radius = 40
+source_strength = 255
 
 # =========================================================
 # INITIAL TEMPERATURE FIELD
@@ -100,12 +100,16 @@ im = ax.imshow(state,cmap='jet',origin='lower')
 plt.colorbar(im)
 
 # MAIN SIMULATION LOOP
-for step in range(350): 
+for step in range(400): 
 
     T_old = T.copy()
 
-    if col_source < Ny - source_radius - 1:
+    source_active = True
+
+    if col_source < Ny + source_radius:
         col_source += 1
+    else:
+        source_active = False
 
     T_new = T.copy()
 
@@ -119,15 +123,16 @@ for step in range(350):
 
     T = T_new
 
-    for i in range(row_source - source_radius,row_source + source_radius + 1):
-        for j in range(col_source - source_radius,col_source + source_radius + 1):
+    if source_active:
+        for i in range(row_source - source_radius,row_source + source_radius + 1):
+            for j in range(col_source - source_radius,col_source + source_radius + 1):
 
-            if 0 <= i < Nx and 0 <= j < Ny:
+                if 0 <= i < Nx and 0 <= j < Ny:
 
-                r2 = ((i - row_source) ** 2 + (j - col_source) ** 2)
-                Q = source_strength * np.exp(-r2 / 1200)
+                    r2 = ((i - row_source) ** 2 + (j - col_source) ** 2)
+                    Q = source_strength * np.exp(-r2 / 2600)
 
-                T[i,j] += (Q * dt) / (rho * cp)
+                    T[i,j] += (Q * dt) / (rho * cp)
 
 
     T[0,:] = ambient_temp
