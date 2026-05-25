@@ -4,5 +4,16 @@ By going 3d, all spatial entities contribute in the grain formation which will l
 
 The basic code would be having similar approach to model the grain growth. However, the thermal data contours and the grain evolution will be decoupled into different codes now. My aim is to have an explicit 3d solver (like typical fem/fdm softwares) which will generate the thermal data i need for testing the grain evolution in ca code. This data will be written to a file and can be extracted by the ca code numerous times while execution. This saves the computation of calculating the thermal profiles in each timestep as well as may speed up the whole process. 
 
-The first code- 'Thermal_solver_3d_V1' has constant properties with respect to time as well as space. 
-The next iteration- 'Thermal_solver_3d_V2' incorporatesthe time dependent properties like k, cp, etc.
+
+
+'Thermal_solver_3d_V1' ------------------
+It has constant properties with respect to time as well as space. 
+Surface level heat deposition
+Constant boundary conditions
+No data extraction yet.
+
+
+'Thermal_solver_3d_V2' ------------------
+It incorporates the time dependent properties like k, cp, etc.
+Has heat flux deposition to a dept.
+Has topmost surface subjected to convection and radiation, boundary walls insulated, bottom surfaace subjected to convection.
