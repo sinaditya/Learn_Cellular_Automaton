@@ -1,0 +1,7 @@
+Upgrading the dimensions was one of the key things to be incorporated in the CA models built until now. since they only show the growth patters of a hypothetical cross section of the sample, their results were eventually unrealistic. This was backed by absolute exclusion of top and bottom face interaction in energy flow. 
+
+By going 3d, all spatial entities contribute in the grain formation which will lead to realistic usable result that can be used to visualise actual grain morphology. 
+
+The basic code would be having similar approach to model the grain growth. However, the thermal data contours and the grain evolution will be decoupled into different codes now. My aim is to have an explicit 3d solver (like typical fem/fdm softwares) which will generate the thermal data i need for testing the grain evolution in ca code. This data will be written to a file and can be extracted by the ca code numerous times while execution. This saves the computation of calculating the thermal profiles in each timestep as well as may speed up the whole process. 
+
+The first code will have constant properties with respect to time as well as space. The next iteration will however incorporate the time dependent properties like k, cp, etc.
