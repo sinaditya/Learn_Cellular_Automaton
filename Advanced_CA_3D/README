@@ -14,10 +14,10 @@ No data extraction yet.
 
 
 'Thermal_solver_3d_V2' ------------------
-It incorporates the temperature dependent properties like k, cp, etc.
+It incorporates the temperature dependent properties like k, cp, etc. However, the property functions are discontinuous and act like step functions.
 Has heat flux deposition to a depth.
 Has topmost surface subjected to convection and radiation, bottom surfaace subjected to convection and the side walls are subjected to a constant temperature (higher than ambient) in order to accomodate raised temperatures due to heat deposition in the workpiece.
 
-'Thermal_solver_3d_V3' ------------------
- 
 
+'Thermal_solver_3d_V3' ------------------
+Smoothens out the property dependence on temperature with a 1st order linear relation between them.
