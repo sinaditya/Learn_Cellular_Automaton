@@ -13,6 +13,7 @@ eta = 0.3          # absorptivity(1/m)
 epsilon = 0.3      # emmisivity
 sigma = 5.67e-8    # stephen-boltzmann constant
 h = 50.0           # convection coefficient (W/m2K)
+beta = 12000.0      # penetration decay coefficient (1/m)
 
 def thermal_conductivity(T):
     return np.where(T < T_melt , k_max , k_min)
@@ -53,25 +54,25 @@ Nt = int(total_time/dt)
 
 #initial condition: T=300 K everywhere
 T0 = 300.0
-
+T_boundary = 360.0
 T_old = np.ones((Nx,Ny,Nz))*T0
 T_new = T_old.copy()
 
 
 #laser parameters
 P = 35.0          # power (W)
-r = 0.0005         # beam radius (m)
+r = 0.0002         # beam radius (m)
 v = 0.05           # velocity (m/s)
 
-A = (2*eta*P)/(np.pi*r**2) #gaussian coefficient
+A = (2*eta*beta*P)/(np.pi*r**2) #gaussian coefficient , volumetric source strength(W/m3)
 
 #coordinates' arrays
 x = np.arange(Nx)*dx
 y = np.arange(Ny)*dy
 z = np.arange(Nz)*dz
 
-#top surface coordinates
-X, Y = np.meshgrid(x, y, indexing='ij')
+#top surface depth coordinates
+X, Y, Z = np.meshgrid(x, y, z, indexing='ij')
 
 top = Nz-1
 
@@ -92,10 +93,10 @@ for n in range(Nt):
     T_new[1:-1,1:-1,1:-1] = (T_old[1:-1,1:-1,1:-1]+ Fo_local[1:-1,1:-1,1:-1] * laplacian)
 
     #boundary conditions - ideal heat sinks as constant temperature
-    T_new[0,:,:]  = T_new[1,:,:]
-    T_new[-1,:,:] = T_new[-2,:,:]
-    T_new[:,0,:]  = T_new[:,1,:]
-    T_new[:,-1,:] = T_new[:,-2,:]
+    T_new[0,:,:]  = T_boundary
+    T_new[-1,:,:] = T_boundary
+    T_new[:,0,:]  = T_boundary
+    T_new[:,-1,:] = T_boundary
     T_new[:,:,0] = T0
     #T_new[:,:,-1] = T0
 
@@ -105,10 +106,11 @@ for n in range(Nt):
     y_center = Ly/2
 
     R2 = ((X - x_center)**2 + (Y - y_center)**2) #distance^2
+    depth_decay = np.exp(-beta*(Lz - Z)) #exponential decay with depth
 
-    q = A*np.exp(-3*R2/r**2) #laser heat flux
-    source_term = (q*dt)/(rho*cp_local[:,:,top]*dz) #convert to temperature increase
-    T_new[:,:,top] += source_term #add to top surface
+    q = A*np.exp(-3*R2/r**2)*depth_decay #laser heat flux
+    source_term = (q*dt)/(rho*cp_local) #convert to temperature increase
+    T_new += source_term #add to top surface
 
     # convection cooling
     cooling = (h*(T_new[:,:,top] - T0)*dt)/(rho*cp_local[:,:,top]*dz)
@@ -124,7 +126,7 @@ for n in range(Nt):
     #plot every 20 steps
     if n%20 == 0:
         plt.clf()
-        plt.imshow(T_new[:,Ny//2,:].T , origin='lower', cmap='hot', extent=[0,Lx*1000,0,Ly*1000], aspect='auto', vmin = 300, vmax = 1500) # for top layer visualisation
+        plt.imshow(T_new[:,Ny//2,:].T , origin='lower', cmap='hot', extent=[0,Lx*1000,0,Lz*1000], aspect='auto', vmin = 300, vmax = 1500) # for top layer visualisation
         plt.colorbar(label='Temperature (K)')
         plt.title(f"Step {n}")
         plt.pause(0.01)
