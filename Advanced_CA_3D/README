@@ -14,6 +14,10 @@ No data extraction yet.
 
 
 'Thermal_solver_3d_V2' ------------------
-It incorporates the time dependent properties like k, cp, etc.
-Has heat flux deposition to a dept.
-Has topmost surface subjected to convection and radiation, boundary walls insulated, bottom surfaace subjected to convection.
+It incorporates the temperature dependent properties like k, cp, etc.
+Has heat flux deposition to a depth.
+Has topmost surface subjected to convection and radiation, bottom surfaace subjected to convection and the side walls are subjected to a constant temperature (higher than ambient) in order to accomodate raised temperatures due to heat deposition in the workpiece.
+
+'Thermal_solver_3d_V3' ------------------
+ 
+
