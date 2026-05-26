@@ -20,4 +20,4 @@ Has topmost surface subjected to convection and radiation, bottom surfaace subje
 
 
 'Thermal_solver_3d_V3' ------------------
-Smoothens out the property dependence on temperature with a 1st order linear relation between them.
+Relates the property dependence on temperature with a tanh() function as it stays continuous throughout and provides smooth transitions between the values with stability.
