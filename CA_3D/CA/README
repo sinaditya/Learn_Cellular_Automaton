@@ -1,3 +1,6 @@
-We do the basic grain initiation and their growth with a primitive rule of any neighbour being solid. No extra physics have been incorporated yet. However, the rules would primarily be similar to what we formulated for 2d CA. 
+We do the basic grain initiation and their growth with a primitive rule of any neighbour being solid. No extra physics have been incorporated yet. However, the rules would primarily be similar to what we formulated for 2d CA. The initial temperature allocation to the grains were allotted simply based on position in the domain. Their respective change in temperature is attained by the cooling rate defined in the code. That encompasses the solidification of the corresponding grain. The final structure obtained will be visualised using pyVista library where the outer boundary as well as the internal boundary both are visible using translucent outer walls for the grains. 
+
+Thermal gradient and other physics based influence will be coded in future versions.
 
 The library of pyvista is still nnot fully learned throughout and hence a lot of improvements - syntax / computational, can be made in the code. This version was made with refernences and help found as is, on the internet. 
+
