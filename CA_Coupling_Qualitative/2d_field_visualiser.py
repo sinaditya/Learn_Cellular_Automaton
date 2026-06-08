@@ -113,4 +113,45 @@ def update_thermal_field(frame):
 # =========================================================================
 print("Starting explicit thermal tracker animation pipeline...")
 ani = FuncAnimation(fig, update_thermal_field, frames=400, interval=20, blit=False, repeat=False)
+# =========================================================================
+# INTERACTIVE CONTROL SWITCHES (Space to Pause | S to Save Snapshot)
+# =========================================================================
+is_paused = False
+
+def interactive_controller(event):
+    global is_paused
+    
+    # 1. Spacebar Toggle: Pause / Resume the physics loop
+    if event.key == ' ':
+        if is_paused:
+            print("[RESUMED] Continuing thermal wave propagation...")
+            ani.resume()
+            is_paused = False
+        else:
+            print("[PAUSED] Simulation frozen. You can now inspect or save this frame.")
+            ani.pause()
+            is_paused = True
+            
+    # 2. 'S' Key Trigger: Take a high-resolution snapshot image
+    elif event.key in ['s', 'S']:
+        # Generate a unique filename using the current frame number
+        filename = f"thermal_snapshot_step_{frame_counter}.png"
+        
+        # Save the figure layout cleanly without clipping titles or colorbars
+        fig.savefig(filename, dpi=300, bbox_inches='tight')
+        print(f"[SNAPSHOT SAVED] High-res image exported successfully as: {filename}")
+
+# To track the frame number for our filename, add a tiny global counter variable
+frame_counter = 0
+
+# Modify your existing update_thermal_field(frame) function by adding 
+# "global frame_counter" on its first line, and "frame_counter = frame" inside it.
+
+# Connect the workspace key listener to Matplotlib
+fig.canvas.mpl_connect('key_press_event', interactive_controller)
+
+print("\n--- INTERACTIVE SHORTCUTS ---")
+print("-> Click on the visual window to focus it.")
+print("-> Press 'SPACEBAR' to Pause/Play the simulation loop.")
+print("-> Press 'S' to save a clean high-resolution PNG snapshot of the current frame.")
 plt.show()
