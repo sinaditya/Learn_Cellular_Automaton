@@ -1,4 +1,4 @@
-This is a very big upgrade as this is where we will see both the code work simultaneoulsy complementing each other at the basic level. The grid is formed intially with randomly distributed cells. I first made two independent codes- one for the discrete heat diffusion equation solver, another for CA analysis that has been made until now. These two were later combined in a singular code and then tweaked accordingly to reflect the true physics. 
+This is a very big upgrade as this is where we will see both of the codes work simultaneoulsy complementing each other at the basic level. The grid is formed intially with randomly distributed cells. I first made two independent codes- one for the discrete heat diffusion equation solver, another for CA analysis that has been made until now. These two were later combined in a singular code and then tweaked accordingly to reflect the true physics. 
 The heat source inputs heat into the grid. The thermal solver will solve the heat diffusion equation and then calculate the thermal gradients and the cooling rate formed on the basis of the heat source motion.
 
 -------------------------------------------------------------
@@ -11,7 +11,7 @@ The initial changes were
 The flow of the code is as the first part forms a random distribution of grains in our observation window. The heat source is then given to the sample which raises the temperature and causes the melting to begin. Meanwhile the motion of heat source is also carried out. In the same timestep, the heat diffusion solver calculates the new temperature gradients and updates the thermal profile for the next timestep to solve for grain growth. The CA part then governs the grain growth based on the current thermal situation which is updated in every timestep. 
 
 
-The current model completely lacks the inclusion of thermal stresses and fluid motion in the molten weld pool, as well as dimensional relevance to reality. Appropriate scaling was done by hit and trial and with references of guides. 
+The current model completely lacks the inclusion of dimensional relevance of the parameters to reality. Appropriate scaling was done by hit and trial under the guidance from professor and seniors. 
 
 
 
@@ -27,6 +27,14 @@ dendritic anisotropy,
 thermal-gradient-driven growth,
 competitive columnar growth,
 randomized CA updates
+
+
+
+Setbacks of solver in V1--
+
+thermal stresses,
+fluid motion in the molten weld pool,
+grain growth above recyrstallisation temperature
 
 -----------------------
 Note-
