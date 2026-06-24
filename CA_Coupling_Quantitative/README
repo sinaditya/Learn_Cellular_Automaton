@@ -1,8 +1,10 @@
 Until now the code that I've built was merely a morphological representation of how the grain growth occurs upon solidification. The values of the parameters used in the code were not referencing any true or physical value with respect to any material since we did not even settle on the material to simulate first. All values were acting as purely CA algorithmic stabilizers and hence didn't have any physical significance. This includes the material property parameters as well as the simulation parameters of dx,dt etc.
 This part would have been used to actually adjust those values to the ones that actually represent a real material and have physical significance. For this, we need to decide upon the simulation parameters as the source variable are defined in terms of cell size and hence changing the grid size will disturb the whole physics. Thus, we need to shift from such cell based parameterisation to a physical value based system where changing the simulation's resolution scale won't disturb the actual physics everytime. This will be beneficial for optimisation of the resulting CA solver eventually.
-Later on, we will introduce true material values from references of research papers where the values are not heuristic anymore but experimentally obtained. Examples of such variables are alpha, cooling coeff, soruce strength, boundary conditions, etc.
+Later on, we will introduce true material values from references of research papers where the values are not heuristic anymore but experimentally obtained. Examples of such variables are alpha, cooling coeff, source strength, boundary conditions, etc.
 
 Update-----
 No code has been pushed in this directory because of the problems faced during physicalisation of the system in the simulation. The timestep and grid size were not in proper proportion and hence the results were unrealistic. Moreover, the code also was not suitable to be running with proper physical values of a typical metal and hence often ran into memory error.
 
 The scaling and physical entity relation will be handled by upgrading the code to 3 dimensions as well as incorporation of proper welding theory enveloped around heat diffusion equation suited to the case of application. 
+
+(refer to CA_3D directory for the upgrades)
