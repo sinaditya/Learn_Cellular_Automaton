@@ -15,7 +15,7 @@ This is the mathematical foundation of anisotropic growth. I didn't build the co
 Also, the resolution of the grid will also be increased now to 300*300 from earlier 100*100 for better visualization.
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-TLDR : if a grain is aligned with the preferred orientation, it will grow uniformly in all directions as its growth is preferred by being more aligned. Now, we not only affect the growth of grains based on their orientation, but also the specific direction of growth as well. 
+TLDR : if a grain is aligned with the preferred orientation, it will grow uniformly in all neighbours in that direction as its growth is preferred by being more aligned. Now, we not only affect the growth of grains based on their orientation, but also the specific direction of growth as well. 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 Why V1 and V2? : 
@@ -23,5 +23,5 @@ V1 is having a condition for hard anisotropy where certain directions for grain 
 
 Optional code of inclusion of captured cells and prevent rechecking all is also in the directory.Helps to save time and computation. 
 
-NOTE- The current code still has an artifical directional bias induced by the order of checking of neighbours. This may give that neighbour an unfair advantage over others to capture that liquid cell since it may pass the probability check first. We'll deal with neighbour randomisation later. 
+NOTE- The current code still has an artifical directional bias induced by the order of checking of neighbours. This gives that neighbour an unfair advantage over others to capture that liquid cell since it may pass the probability check first. We'll deal with neighbour randomisation later. 
 
