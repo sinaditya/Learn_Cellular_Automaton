@@ -11,7 +11,7 @@ v(θ) = growth velocity in direction θ
 ϵ = anisotropy strength
 n = crystal symmetry
 
-This is the mathematical foundation of anisotropic growth. I didn't referred to the code to solve this equation directly. Rather we will just emulate and assign specific directions for now. 
+This is the mathematical foundation of anisotropic growth. I didn't build the code to solve this equation directly. Rather we will just emulate and assign specific directions for now. 
 Also, the resolution of the grid will also be increased now to 300*300 from earlier 100*100 for better visualization.
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------
