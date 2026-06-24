@@ -2,5 +2,5 @@ We do the basic grain initiation and their growth with a primitive rule of any n
 
 Thermal gradient and other physics based influence will be coded in future versions.
 
-The library of pyvista is still nnot fully learned throughout and hence a lot of improvements - syntax / computational, can be made in the code. This version was made with refernences and help found as is, on the internet. 
+The library of pyvista is still not fully learned throughout and hence a lot of improvements - syntax / computational, can be made in the code. This version was made with references and help found as is, on the internet. 
 
